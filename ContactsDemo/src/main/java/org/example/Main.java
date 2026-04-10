@@ -1,4 +1,4 @@
-package contacts;
+package org.example;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -174,14 +174,11 @@ public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Record> records = new ArrayList<>();
-    private static String fileName = null;
+    private static final String fileName = "ContactsDemo/phonebook.db";
 
     public static void main(String[] args) {
 
-        if (args.length > 0) {
-            fileName = args[0];
-            load();
-        }
+        load();
 
         while (true) {
 
@@ -195,7 +192,9 @@ public class Main {
                 case "count":
                     System.out.println("The Phone Book has " + records.size() + " records.");
                     break;
-                case "exit": return;
+                case "exit":
+                    save(); // optional but safe
+                    return;
             }
 
             System.out.println();
@@ -250,6 +249,39 @@ public class Main {
 
         System.out.println("The record added.");
     }
+
+    private static void save() {
+        try (ObjectOutputStream out =
+                     new ObjectOutputStream(new FileOutputStream(fileName))) {
+
+            out.writeObject(records);
+
+        } catch (Exception e) {
+            System.out.println("Error saving file: " + e.getMessage());
+        }
+    }
+
+    private static void load() {
+        File file = new File(fileName);
+
+        if (!file.exists()) {
+            System.out.println("No existing file found. Starting fresh.");
+            return;
+        }
+
+        try (ObjectInputStream in =
+                     new ObjectInputStream(new FileInputStream(fileName))) {
+
+            records = (List<Record>) in.readObject();
+            System.out.println("Loaded " + fileName);
+
+        } catch (Exception e) {
+            System.out.println("Error loading file: " + e.getMessage());
+        }
+
+    }
+
+
 
     private static void listRecords() {
 
@@ -340,25 +372,4 @@ public class Main {
         }
     }
 
-    private static void save() {
-
-        if (fileName == null) return;
-
-        try (ObjectOutputStream out =
-                     new ObjectOutputStream(new FileOutputStream(fileName))) {
-
-            out.writeObject(records);
-
-        } catch (Exception ignored) {}
-    }
-
-    private static void load() {
-
-        try (ObjectInputStream in =
-                     new ObjectInputStream(new FileInputStream(fileName))) {
-
-            records = (List<Record>) in.readObject();
-
-        } catch (Exception ignored) {}
-    }
 }
