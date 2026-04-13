@@ -193,7 +193,7 @@ public class Main {
                     System.out.println("The Phone Book has " + records.size() + " records.");
                     break;
                 case "exit":
-                    save(); // optional but safe
+                    save();
                     return;
             }
 
@@ -273,7 +273,7 @@ public class Main {
                      new ObjectInputStream(new FileInputStream(fileName))) {
 
             records = (List<Record>) in.readObject();
-            System.out.println("Loaded " + fileName);
+            System.out.println("Loaded " + "phonebook.db");
 
         } catch (Exception e) {
             System.out.println("Error loading file: " + e.getMessage());
