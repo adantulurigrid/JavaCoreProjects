@@ -1,4 +1,4 @@
-package org.example;
+package org.simplesearchengine;
 import java.util.Scanner;
 
 public class Stage1 {

@@ -1,4 +1,4 @@
-package org.example;
+package org.simplesearchengine;
 
 import java.io.File;
 import java.io.FileNotFoundException;
