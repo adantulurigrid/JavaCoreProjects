@@ -193,7 +193,7 @@ public class Main {
                     System.out.println("The Phone Book has " + records.size() + " records.");
                     break;
                 case "exit":
-                    save();x
+                    save();
                     return;
             }
 
