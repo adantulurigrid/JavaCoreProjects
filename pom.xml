@@ -11,9 +11,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>SimpleSearchEngineDemo</module>
-        <module>ContactsDemo</module>
-        <module>tic-tac-toe-with-maven</module>
+        <module>domainimpl</module>
     </modules>
 
 </project>

@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ContactsDemo" />
         <module name="ticTacToe_maven" />
         <module name="searchEngineDemo" />
+        <module name="domainimpl" />
+        <module name="ContactsDemo" />
       </profile>
     </annotationProcessing>
   </component>
